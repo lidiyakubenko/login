@@ -6,10 +6,10 @@ import Registration from './Registration'
 import '../styles/global.scss'
 import 'animate.css'
 
-const App = () =>
+const App = () =;>
     <Switch>
-        <Route exact path='/' component={Login}/>
-        <Route path='/registration' component={Registration}/>
-        <Route component={Whoops404}/>
-    </Switch>
+        <Route; exact; path='/'; component={Login};/>
+        <Route; path='/registration'; component={Registration};/>
+        <Route; component={Whoops404};/>
+    </Switch>;
 export default App

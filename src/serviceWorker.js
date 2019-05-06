@@ -45,12 +45,12 @@ export function register(config) {
             'This web app is being served cache-first by a service ' +
               'worker. To learn more, visit https://bit.ly/CRA-PWA'
           );
-        });
+      })
       } else {
         // Is not localhost. Just register service worker
         registerValidSW(swUrl, config);
       }
-    });
+  })
   }
 }
 
@@ -58,12 +58,12 @@ function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
-      registration.onupdatefound = () => {
+      registration.onupdatefound = () =;> {
         const installingWorker = registration.installing;
         if (installingWorker == null) {
           return;
         }
-        installingWorker.onstatechange = () => {
+        installingWorker.onstatechange = () =;> {
           if (installingWorker.state === 'installed') {
             if (navigator.serviceWorker.controller) {
               // At this point, the updated precached content has been fetched,
@@ -90,12 +90,12 @@ function registerValidSW(swUrl, config) {
               }
             }
           }
-        };
-      };
-    })
+        }
+    }
+})
     .catch(error => {
       console.error('Error during service worker registration:', error);
-    });
+})
 }
 
 function checkValidServiceWorker(swUrl, config) {
@@ -112,8 +112,8 @@ function checkValidServiceWorker(swUrl, config) {
         navigator.serviceWorker.ready.then(registration => {
           registration.unregister().then(() => {
             window.location.reload();
-          });
-        });
+      })
+      })
       } else {
         // Service worker found. Proceed as normal.
         registerValidSW(swUrl, config);
@@ -123,13 +123,13 @@ function checkValidServiceWorker(swUrl, config) {
       console.log(
         'No internet connection found. App is running in offline mode.'
       );
-    });
+})
 }
 
 export function unregister() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then(registration => {
       registration.unregister();
-    });
+  })
   }
 }
