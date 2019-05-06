@@ -1,31 +1,100 @@
-$width: 400px;
+$width: 320px;
+$height: 100%;
 
-.root_container{
-  height: 100%;
+.root_container {
+  height: $height;
+  overflow: hidden;
+  background: url("./pictures/Subtle-Prism.svg");
+  //background: linear-gradient(to top ,#008B8B , #7FFFD4 , #F0FFFF ,  #F2594B ,  #800000 );
 }
 
-.form_container{
-  height: 100%;
-  background-color:rgba(100,100,220,.8);
+.form_container {
+  height: $height;
   display: flex;
   justify-content: center;
   align-items: center;
+  .form {
+    padding: 40px 20px 20px 20px;
+    box-shadow: 0  0 4px 2px rgba(0,0,0,.1);
+    background-color: whitesmoke;
+    align-items: center;
+    max-width: $width;
+    min-width: $width;
+    border-radius: 5px;
+    display: flex;
+    flex-flow: column;
+
+    .login-form-forgot {
+      float: right;
+      cursor: pointer;
+    }
+
+    .form-button {
+      width: 100%;
+    }
+  }
 }
 
-.form {
-  padding: 40px 20px;
-  background-color: whitesmoke;
-  align-items: center;
-  width: 300px;
-  border-radius: 5px;
-  display: flex;
-  flex-flow: column;
+@keyframes turnOverInY {
+  from {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    opacity: 0;
+  }
+
+  70% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -2deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, -2deg);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: perspective(400px);
+    transform: perspective(400px);
+  }
+
 }
 
-.login-form-forgot {
-  float: right;
+.flipInYMine {
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+  -webkit-animation-name: turnOverInY;
+  animation-name: turnOverInY;
+  -webkit-animation-duration: 600ms;
+  animation-duration: 600ms;
 }
 
-.form-button{
-  width: 100%;
+@-webkit-keyframes Gradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+@-moz-keyframes Gradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
 }
