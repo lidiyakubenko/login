@@ -4,7 +4,7 @@ const PathControl = ComposedForm =>
     class FormControl extends Component {
 
         constructor(props) {
-            super(props)
+            super(props);
             this.state = {
                 isLogin: this.props.match.url === '/',
                 isRegistered: this.props.match.url === '/isRegistered',
@@ -12,10 +12,10 @@ const PathControl = ComposedForm =>
         }
 
         goToNextForm = path => {
-            const {history} = this.props
-            this.setState({isLogin: path === '/', isRegistered: path === '/isRegistered'})
+            const {history} = this.props;
+            this.setState({isLogin: path === '/', isRegistered: path === '/isRegistered'});
             setTimeout(() => history.replace(path), 400)
-        }
+        };
 
         render() {
             return (
@@ -28,9 +28,9 @@ const PathControl = ComposedForm =>
                 </div>
             )
         }
-    }
+    };
 
-PathControl.propTypes = {}
+PathControl.propTypes = {};
 
 export default PathControl
 

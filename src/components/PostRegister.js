@@ -4,7 +4,7 @@ import PathControl from './PathControl'
 
 class PostRegister extends Component {
     render() {
-        const {isRegistered,goToNextForm} = this.props
+        const {isRegistered, goToNextForm} = this.props;
         return (
             <div className={isRegistered ?
                 'message_after_register flipInYMine' : 'message_after_register animated flipOutY faster'}>
@@ -17,6 +17,6 @@ class PostRegister extends Component {
 
 PostRegister.propTypes = {
     isRegistered:PropTypes.bool
-}
+};
 
 export default PathControl(PostRegister)
