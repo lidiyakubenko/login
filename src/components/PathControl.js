@@ -7,13 +7,14 @@ const PathControl = ComposedForm =>
             super(props)
             this.state = {
                 isLogin: this.props.match.url === '/',
+                isRegistered: this.props.match.url === '/isRegistered',
             }
         }
 
         goToNextForm = path => {
             const {history} = this.props
-            this.setState({isLogin: path === '/'})
-            setTimeout(() => history.push(path),400)
+            this.setState({isLogin: path === '/', isRegistered: path === '/isRegistered'})
+            setTimeout(() => history.replace(path), 400)
         }
 
         render() {

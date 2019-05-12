@@ -1,19 +1,46 @@
 import React, {Component} from 'react'
-import {Button, Checkbox, Form, Icon, Input} from 'antd'
+import {Button, Form, Icon, Input} from 'antd'
 import {SocialIcon} from 'react-social-icons'
 import PathControl from './PathControl'
 import {withRouter} from 'react-router-dom'
+import axios from 'axios/index'
 
 class Login extends Component {
+
     handleSubmit = e => {
         e.preventDefault()
+        let bodyFormData = new FormData()
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values)
-                alert('request sended')
+                bodyFormData.set('username', values.username)
+                bodyFormData.set('password', values.password)
+                axios({
+                    method: 'post',
+                    url: '/login',
+                    data: bodyFormData,
+                    config: {headers: {'Content-Type': 'application/x-www-form-urlencoded',}}
+                })
+                    .then(() => {
+                        window.history.back()
+                    })
+                    .catch(error => {
+                        const status = error.response.status
+                        status === 401 ?
+                            this.props.form.setFields({
+                                username: {
+                                    value: values.username,
+                                    errors: [new Error('')],
+                                },
+                                password: {
+                                    value: values.password,
+                                    errors: [new Error('Could not log in. Recheck please login and password')],
+                                }
+                            }) : console.log(error)
+                    })
             }
         })
     }
+
 
     render() {
         const {getFieldDecorator} = this.props.form
@@ -21,21 +48,24 @@ class Login extends Component {
         return (
             <div className={isLogin ? 'form flipInYMine' : 'form animated flipOutY faster'}>
                 <h2>Login</h2>
-                <Form  style={{width:'100%'}} onSubmit={this.handleSubmit}>
+                <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
                     <Form.Item>
                         {getFieldDecorator('username', {
-                            rules: [{required: true, message: 'Please input your username!'}],
+                            rules: [
+                                {required: true, message: 'Please input your username!'},
+                            ],
                         })(
                             <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                                   placeholder="Username"/>
+                                   autoComplete='username' placeholder="Username"/>
                         )}
                     </Form.Item>
                     <Form.Item>
                         {getFieldDecorator('password', {
-                            rules: [{required: true, message: 'Please input your Password!'}],
+                            rules: [
+                                {required: true, message: 'Please input your Password!'}]
                         })(
                             <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>} type="password"
-                                   placeholder="Password"/>
+                                   autoComplete='current-password' placeholder="Password"/>
                         )}
                     </Form.Item>
                     <Form.Item>
@@ -50,7 +80,7 @@ class Login extends Component {
                     <SocialIcon network="github"/>
                     <SocialIcon network="google"/>
                 </div>
-                <div style={{display:'flex',alignItems:'center',flexFlow:'column', marginTop:20}}>
+                <div style={{display: 'flex', alignItems: 'center', flexFlow: 'column', marginTop: 20}}>
                     <a onClick={() => goToNextForm('/registration')}>Sign up</a>
                     <div>or</div>
                     <p onClick={() => goToNextForm('/registration')}
@@ -61,6 +91,5 @@ class Login extends Component {
     }
 }
 
-Login.propTypes = {}
 
 export default withRouter(Form.create({name: 'normal_login'})(PathControl(Login)))

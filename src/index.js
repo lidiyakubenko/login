@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom'
 import App from './components/App'
 import * as serviceWorker from './serviceWorker'
 import {HashRouter} from 'react-router-dom'
+import axios from 'axios'
+
+
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+
 
 ReactDOM.render(
     <HashRouter>
