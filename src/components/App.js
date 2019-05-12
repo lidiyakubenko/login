@@ -13,7 +13,7 @@ const App = () =>
         <Route path='/registration' component={Registration}/>
         <Route path='/isRegistered' component={PostRegister}/>
         <Route path='/activate' component={({location}) =>
-        { window.location = `http://auth.selector.site/account/activate${location.search}`; return null;} }/>
+        { window.location = `/account/activate${location.search}`; return null;} }/>
         <Route component={Whoops404}/>
     </Switch>
 export default App
