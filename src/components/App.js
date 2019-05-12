@@ -15,5 +15,5 @@ const App = () =>
         <Route path='/activate' component={({location}) =>
         { window.location = `/account/activate${location.search}`; return null;} }/>
         <Route component={Whoops404}/>
-    </Switch>
+    </Switch>;
 export default App

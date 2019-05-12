@@ -7,10 +7,10 @@ class Registration extends Component {
 
     state = {
         confirmDirty: false,
-    }
+    };
 
     handleSubmit = e => {
-        e.preventDefault()
+        e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 axios({
@@ -23,7 +23,7 @@ class Registration extends Component {
                         this.props.goToNextForm('/isRegistered')
                     })
                     .catch(error => {
-                        const message = error.response.data.message
+                        const message = error.response.data.message;
                         message === 'email-exists' ?
                             this.props.form.setFields({
                                 email: {
@@ -41,33 +41,33 @@ class Registration extends Component {
                     })
             }
         })
-    }
+    };
 
     compareToFirstPassword = (rule, value, callback) => {
-        const form = this.props.form
+        const form = this.props.form;
         if (value && value !== form.getFieldValue('password')) {
             callback('Two passwords that you enter is inconsistent!')
         } else {
             callback()
         }
-    }
+    };
 
     validateToNextPassword = (rule, value, callback) => {
-        const form = this.props.form
+        const form = this.props.form;
         if (value && this.state.confirmDirty) {
             form.validateFields(['confirm'], {force: true})
         }
         callback()
-    }
+    };
 
     handleConfirmBlur = (e) => {
-        const value = e.target.value
+        const value = e.target.value;
         this.setState({confirmDirty: this.state.confirmDirty || !!value})
-    }
+    };
 
     render() {
-        const {getFieldDecorator} = this.props.form
-        const {isLogin, isRegistered, goToNextForm} = this.props
+        const {getFieldDecorator} = this.props.form;
+        const {isLogin, isRegistered, goToNextForm} = this.props;
         return (
             <div className={!isLogin && !isRegistered ? 'form flipInYMine' : 'form animated flipOutY faster'}>
                 <h2>Registration</h2>
