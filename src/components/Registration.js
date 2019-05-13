@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Button, Form, Icon, Input} from 'antd'
-import PathControl from './PathControl'
+import ComponentsControl from './ComponentsControl'
 import axios from 'axios/index'
 
 class Registration extends Component {
@@ -16,11 +16,11 @@ class Registration extends Component {
                 axios({
                     method: 'post',
                     url: '/account/register',
-                    data: {...values, redirectUrl:document.referrer},
+                    data: {...values, redirectUrl: document.referrer},
                     config: {headers: {'Content-Type': 'application/x-www-form-urlencoded',}}
                 })
                     .then(() => {
-                        this.props.goToNextForm('/isRegistered')
+                        this.props.registrationOver()
                     })
                     .catch(error => {
                         const message = error.response.data.message
@@ -67,75 +67,75 @@ class Registration extends Component {
 
     render() {
         const {getFieldDecorator} = this.props.form
-        const {isLogin, isRegistered, goToNextForm} = this.props
+        const {isRegistration, goToNextForm} = this.props
         return (
-            <div className={!isLogin && !isRegistered ? 'form flipInYMine' : 'form animated flipOutY faster'}>
-                <h2>Registration</h2>
-                <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
-                    <Form.Item>
-                        {getFieldDecorator('email', {
-                            rules: [{
-                                type: 'email', message: 'The input is not valid e-mail!',
-                            }, {
-                                required: true, message: 'Please input your e-mail!',
-                            }],
-                        })(
-                            <Input prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                                   placeholder="E-mail"/>
-                        )}
-                    </Form.Item>
-                    <Form.Item>
-                        {getFieldDecorator('username', {
-                            rules: [{required: true, message: 'Please input your login!'}],
-                        })(
-                            <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                                   placeholder="Username"/>
-                        )}
-                    </Form.Item>
-                    <Form.Item>
-                        {getFieldDecorator('password', {
-                            rules: [
-                                {
-                                    min: 6, message: 'At least six symbols!',
-                                },
-                                {
-                                    required: true, message: 'Please input your password!',
+                <div className={isRegistration ? 'form flipInYMine' : 'form animated flipOutY faster'}>
+                    <h2>Registration</h2>
+                    <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
+                        <Form.Item>
+                            {getFieldDecorator('email', {
+                                rules: [{
+                                    type: 'email', message: 'The input is not valid e-mail!',
                                 }, {
-                                    validator: this.validateToNextPassword,
-                                }
-                            ],
-                        })(
-                            <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                                   type="password" placeholder="Password"/>
-                        )}
-                    </Form.Item>
-                    <Form.Item>
-                        {getFieldDecorator('confirm', {
-                            rules: [{
-                                required: true, message: 'Please confirm your password!',
-                            }, {
-                                validator: this.compareToFirstPassword,
-                            }],
-                        })(
-                            <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                                   type="password"
-                                   placeholder="Confirm password"
-                                   onBlur={this.handleConfirmBlur}/>
-                        )}
-                    </Form.Item>
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit" className="form-button">
-                            Register
-                        </Button>
-                        Or <p style={{color:'blue'}} onClick={() => goToNextForm('/')}>Log in!</p>
-                    </Form.Item>
-                </Form>
-            </div>
+                                    required: true, message: 'Please input your e-mail!',
+                                }],
+                            })(
+                                <Input prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                                       placeholder="E-mail"/>
+                            )}
+                        </Form.Item>
+                        <Form.Item>
+                            {getFieldDecorator('username', {
+                                rules: [{required: true, message: 'Please input your login!'}],
+                            })(
+                                <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                                       placeholder="Username"/>
+                            )}
+                        </Form.Item>
+                        <Form.Item>
+                            {getFieldDecorator('password', {
+                                rules: [
+                                    {
+                                        min: 6, message: 'At least six symbols!',
+                                    },
+                                    {
+                                        required: true, message: 'Please input your password!',
+                                    }, {
+                                        validator: this.validateToNextPassword,
+                                    }
+                                ],
+                            })(
+                                <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                                       type="password" placeholder="Password"/>
+                            )}
+                        </Form.Item>
+                        <Form.Item>
+                            {getFieldDecorator('confirm', {
+                                rules: [{
+                                    required: true, message: 'Please confirm your password!',
+                                }, {
+                                    validator: this.compareToFirstPassword,
+                                }],
+                            })(
+                                <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                                       type="password"
+                                       placeholder="Confirm password"
+                                       onBlur={this.handleConfirmBlur}/>
+                            )}
+                        </Form.Item>
+                        <Form.Item>
+                            <Button type="primary" htmlType="submit" className="form-button">
+                                Register
+                            </Button>
+                            Or <a onClick={() => goToNextForm('/')}>Log in!</a>
+                        </Form.Item>
+                    </Form>
+                </div>
         )
     }
 }
 
 
-export default Form.create({name: 'normal_registration'})(PathControl(Registration))
+export default Form.create({name: 'normal_registration'})(ComponentsControl(Registration))
 
 

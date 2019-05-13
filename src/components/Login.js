@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Button, Form, Icon, Input} from 'antd'
 import {SocialIcon} from 'react-social-icons'
-import PathControl from './PathControl'
+import ComponentsControl from './ComponentsControl'
 import {withRouter} from 'react-router-dom'
 import axios from 'axios/index'
 
@@ -92,4 +92,4 @@ class Login extends Component {
 }
 
 
-export default withRouter(Form.create({name: 'normal_login'})(PathControl(Login)))
+export default withRouter(Form.create({name: 'normal_login'})(ComponentsControl(Login)))
