@@ -8,12 +8,12 @@ import axios from 'axios/index'
 class Login extends Component {
 
     handleSubmit = e => {
-        e.preventDefault();
-        let bodyFormData = new FormData();
+        e.preventDefault()
+        let bodyFormData = new FormData()
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                bodyFormData.set('username', values.username);
-                bodyFormData.set('password', values.password);
+                bodyFormData.set('username', values.username)
+                bodyFormData.set('password', values.password)
                 axios({
                     method: 'post',
                     url: '/login',
@@ -21,10 +21,10 @@ class Login extends Component {
                     config: {headers: {'Content-Type': 'application/x-www-form-urlencoded',}}
                 })
                     .then((response) => {
-                        window.location = response.data;
+                        window.location = response.data
                     })
                     .catch(error => {
-                        const status = error.response.status;
+                        const status = error.response.status
                         status === 401 ?
                             this.props.form.setFields({
                                 username: {
@@ -39,12 +39,12 @@ class Login extends Component {
                     })
             }
         })
-    };
+    }
 
 
     render() {
-        const {getFieldDecorator} = this.props.form;
-        const {isLogin, goToNextForm} = this.props;
+        const {getFieldDecorator} = this.props.form
+        const {isLogin, goToNextForm} = this.props
         return (
             <div className={isLogin ? 'form flipInYMine' : 'form animated flipOutY faster'}>
                 <h2>Login</h2>

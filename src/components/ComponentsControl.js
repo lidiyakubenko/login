@@ -7,7 +7,7 @@ const ComponentsControl = ComposedForm =>
         constructor(props) {
             super(props)
             this.state = {
-                isLogin: this.props.match.url === '/login',
+                isLogin: this.props.match.url === '/',
                 isRegistration: this.props.match.url === '/registration',
                 isRegistered: false
             }
@@ -15,7 +15,7 @@ const ComponentsControl = ComposedForm =>
 
         goToNextForm = path => {
             const {history} = this.props
-            this.setState({isLogin: path === '/login', isRegistration: path === '/registration'})
+            this.setState({isLogin: path === '/', isRegistration: path === '/registration'})
             setTimeout(() => history.replace(path), 400)
         }
 
