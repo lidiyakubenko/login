@@ -16,5 +16,5 @@ const App = () =>
             return null
         }}/>
         <Route component={Whoops404}/>
-    </Switch>
+    </Switch>;
 export default App

@@ -16,7 +16,7 @@ class Registration extends Component {
                 axios({
                     method: 'post',
                     url: '/account/register',
-                    data: {...values, redirectUrl: document.referrer},
+                    data: values,
                     config: {headers: {'Content-Type': 'application/x-www-form-urlencoded',}}
                 })
                     .then(() => {

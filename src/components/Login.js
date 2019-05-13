@@ -8,23 +8,23 @@ import axios from 'axios/index'
 class Login extends Component {
 
     handleSubmit = e => {
-        e.preventDefault()
-        let bodyFormData = new FormData()
+        e.preventDefault();
+        let bodyFormData = new FormData();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                bodyFormData.set('username', values.username)
-                bodyFormData.set('password', values.password)
+                bodyFormData.set('username', values.username);
+                bodyFormData.set('password', values.password);
                 axios({
                     method: 'post',
                     url: '/login',
                     data: bodyFormData,
                     config: {headers: {'Content-Type': 'application/x-www-form-urlencoded',}}
                 })
-                    .then(() => {
-                        window.history.back()
+                    .then((response) => {
+                        window.location = response.data;
                     })
                     .catch(error => {
-                        const status = error.response.status
+                        const status = error.response.status;
                         status === 401 ?
                             this.props.form.setFields({
                                 username: {
@@ -39,12 +39,12 @@ class Login extends Component {
                     })
             }
         })
-    }
+    };
 
 
     render() {
-        const {getFieldDecorator} = this.props.form
-        const {isLogin, goToNextForm} = this.props
+        const {getFieldDecorator} = this.props.form;
+        const {isLogin, goToNextForm} = this.props;
         return (
             <div className={isLogin ? 'form flipInYMine' : 'form animated flipOutY faster'}>
                 <h2>Login</h2>
@@ -75,10 +75,9 @@ class Login extends Component {
                     </Form.Item>
                 </Form>
                 <div style={{width: '90%', display: 'flex', justifyContent: 'space-around'}}>
-                    <SocialIcon network="twitter"/>
-                    <SocialIcon network="facebook"/>
-                    <SocialIcon network="github"/>
-                    <SocialIcon network="google"/>
+                    <SocialIcon network="google" url="/oauth2/authorization/google"/>
+                    <SocialIcon network="github" url="/oauth2/authorization/github"/>
+                    <SocialIcon network="facebook" url="/oauth2/authorization/facebook"/>
                 </div>
                 <div style={{display: 'flex', alignItems: 'center', flexFlow: 'column', marginTop: 20}}>
                     <a onClick={() => goToNextForm('/registration')}>Sign up</a>

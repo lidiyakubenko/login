@@ -10,6 +10,6 @@ class Whoops404 extends Component {
     }
 }
 
-Whoops404.propTypes = {}
+Whoops404.propTypes = {};
 
 export default Whoops404
