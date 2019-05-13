@@ -75,10 +75,9 @@ class Login extends Component {
                     </Form.Item>
                 </Form>
                 <div style={{width: '90%', display: 'flex', justifyContent: 'space-around'}}>
-                    <SocialIcon network="twitter"/>
-                    <SocialIcon network="facebook"/>
-                    <SocialIcon network="github"/>
-                    <SocialIcon network="google"/>
+                    <SocialIcon network="google" url="/oauth2/authorization/google"/>
+                    <SocialIcon network="github" url="/oauth2/authorization/github"/>
+                    <SocialIcon network="facebook" url="/oauth2/authorization/facebook"/>
                 </div>
                 <div style={{display: 'flex', alignItems: 'center', flexFlow: 'column', marginTop: 20}}>
                     <a onClick={() => goToNextForm('/registration')}>Sign up</a>
