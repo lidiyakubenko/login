@@ -2,7 +2,7 @@
   "name": "login",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8086",
+  "proxy": "http://auth.selector.site:3086",
   "homepage": ".",
   "dependencies": {
     "animate.css": "3.7.0",
