@@ -8,7 +8,7 @@ import 'animate.css'
 
 const App = () =>
     <Switch>
-        <Route path='/' component={Login}/>
+        <Route exact path='/' component={Login}/>
         <Route path='/registration' component={Registration}/>
         <Route path='/activate' component={({location}) => {
             window.location = `/account/activate${location.search}`
