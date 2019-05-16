@@ -8,12 +8,12 @@ import axios from 'axios/index'
 class Login extends Component {
 
     handleSubmit = e => {
-        e.preventDefault()
-        let bodyFormData = new FormData()
+        e.preventDefault();
+        let bodyFormData = new FormData();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                bodyFormData.set('username', values.username)
-                bodyFormData.set('password', values.password)
+                bodyFormData.set('username', values.username);
+                bodyFormData.set('password', values.password);
                 axios({
                     method: 'post',
                     url: '/login',
@@ -24,7 +24,7 @@ class Login extends Component {
                         window.location = response.data
                     })
                     .catch(error => {
-                        const status = error.response.status
+                        const status = error.response.status;
                         status === 401 ?
                             this.props.form.setFields({
                                 username: {
@@ -39,12 +39,12 @@ class Login extends Component {
                     })
             }
         })
-    }
+    };
 
 
     render() {
-        const {getFieldDecorator} = this.props.form
-        const {isLogin, goToNextForm} = this.props
+        const {getFieldDecorator} = this.props.form;
+        const {isLogin, goToNextForm} = this.props;
         return (
             <div className={isLogin ? 'form flipInYMine' : 'form animated flipOutY faster'}>
                 <h2>Login</h2>
@@ -82,8 +82,9 @@ class Login extends Component {
                 <div style={{display: 'flex', alignItems: 'center', flexFlow: 'column', marginTop: 20}}>
                     <a onClick={() => goToNextForm('/registration')}>Sign up</a>
                     <div>or</div>
-                    <p onClick={() => goToNextForm('/registration')}
-                       className="login-form-forgot">Restore password</p>
+                    <p className="login-form-forgot">
+                        <a onClick={() => goToNextForm('/restore-password-init')}>Restore password</a>
+                    </p>
                 </div>
             </div>
         )
