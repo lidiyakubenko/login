@@ -7,44 +7,47 @@ import axios from 'axios/index'
 
 class Login extends Component {
 
+    handleLogin = async(data, values) => {
+        try {
+            const response = await axios({
+                method: 'post',
+                url: '/login',
+                data: data,
+                config: {headers: {'Content-Type': 'application/x-www-form-urlencoded',}}
+            })
+            window.location = response.data
+        }
+        catch (error) {
+            const status = error.response.status
+            status === 401 ?
+                this.props.form.setFields({
+                    username: {
+                        value: values.username,
+                        errors: [new Error('')],
+                    },
+                    password: {
+                        value: values.password,
+                        errors: [new Error('Could not log in. Recheck please login and password')],
+                    }
+                }) : console.log(error)
+        }
+    }
     handleSubmit = e => {
-        e.preventDefault();
-        let bodyFormData = new FormData();
-        this.props.form.validateFields((err, values) => {
+        e.preventDefault()
+        let bodyFormData = new FormData()
+        this.props.form.validateFields(async (err, values) => {
             if (!err) {
-                bodyFormData.set('username', values.username);
-                bodyFormData.set('password', values.password);
-                axios({
-                    method: 'post',
-                    url: '/login',
-                    data: bodyFormData,
-                    config: {headers: {'Content-Type': 'application/x-www-form-urlencoded',}}
-                })
-                    .then((response) => {
-                        window.location = response.data
-                    })
-                    .catch(error => {
-                        const status = error.response.status;
-                        status === 401 ?
-                            this.props.form.setFields({
-                                username: {
-                                    value: values.username,
-                                    errors: [new Error('')],
-                                },
-                                password: {
-                                    value: values.password,
-                                    errors: [new Error('Could not log in. Recheck please login and password')],
-                                }
-                            }) : console.log(error)
-                    })
+                bodyFormData.set('username', values.username)
+                bodyFormData.set('password', values.password)
+                this.handleLogin(bodyFormData, values)
             }
         })
-    };
+    }
 
 
     render() {
-        const {getFieldDecorator} = this.props.form;
-        const {isLogin, goToNextForm} = this.props;
+        const {getFieldDecorator} = this.props.form
+        const {isLogin, goToNextForm} = this.props
         return (
             <div className={isLogin ? 'form flipInYMine' : 'form animated flipOutY faster'}>
                 <h2>Login</h2>
