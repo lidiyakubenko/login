@@ -25,6 +25,14 @@ class Main extends Component {
     };
 
     getTitle = () => {
+        switch (this.state.activeKey) {
+            case 'login':
+                return 'Welcome';
+            case 'registration':
+                return 'Registration';
+            case 'restore':
+                return 'Forgot Password';
+        }
         return this.state.activeKey.charAt(0).toUpperCase() + this.state.activeKey.slice(1);
     };
 

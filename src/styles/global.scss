@@ -28,6 +28,9 @@ $height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  .ant-card-head-title{
+    text-align: center;
+  }
   .form {
     padding: 0;
     @include form;
