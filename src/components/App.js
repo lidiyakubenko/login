@@ -1,21 +1,15 @@
 import React from 'react'
-import {Route, Switch} from 'react-router-dom'
-import Whoops404 from './Whoops404'
-import Login from './Login'
-import Registration from './Registration'
-import RestorePassword from './RestorePasswordInit'
+import {Redirect, Route, Switch} from 'react-router-dom'
 import '../styles/global.scss'
 import 'animate.css'
+import Main from "./Main";
+import Activate from "./Activate";
 
 const App = () =>
     <Switch>
-        <Route exact path='/' component={Login}/>
-        <Route exact path='/registration' component={Registration}/>
-        <Route exact path='/restore-password-init' component={RestorePassword}/>
-        <Route exact path='/activate' component={({location}) => {
-            window.location = `/account/activate${location.search}`;
-            return null
-        }}/>
-        <Route component={Whoops404}/>
+        <Route exact path="/" render={() => (<Redirect to="/login"/>)}/>
+        <Route exact path='/:tab(login|registration|restore)' component={Main}/>
+        <Route exact path='/activate/:key' component={Activate}/>
+        <Route render={() => (<Redirect to="/login"/>)}/>
     </Switch>;
 export default App

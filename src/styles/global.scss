@@ -2,12 +2,12 @@ $width: 320px;
 $height: 100%;
 
 @mixin form {
-  box-shadow: 0 0 4px 2px rgba(0, 0, 0, .1);
-  background-color: whitesmoke;
-  align-items: center;
-  max-width: $width;
-  min-width: $width;
-  border-radius: 5px;
+  //box-shadow: 0 0 4px 2px rgba(0, 0, 0, .1);
+  //background-color: whitesmoke;
+  //align-items: center;
+  //max-width: $width;
+  //min-width: $width;
+  //border-radius: 5px;
   display: flex;
   flex-flow: column;
 }
@@ -29,7 +29,7 @@ $height: 100%;
   justify-content: center;
   align-items: center;
   .form {
-    padding: 40px 20px 20px 20px;
+    padding: 0;
     @include form;
 
     .login-form-forgot {
@@ -43,33 +43,6 @@ $height: 100%;
   }
 }
 
-@keyframes turnOverInY {
-  from {
-    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
-    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
-    opacity: 0;
-  }
-
-  70% {
-    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -2deg);
-    transform: perspective(400px) rotate3d(0, 1, 0, -2deg);
-    opacity: 1;
-  }
-  to {
-    -webkit-transform: perspective(400px);
-    transform: perspective(400px);
-  }
-
-}
-
-.flipInYMine {
-  -webkit-backface-visibility: visible !important;
-  backface-visibility: visible !important;
-  -webkit-animation-name: turnOverInY;
-  animation-name: turnOverInY;
-  -webkit-animation-duration: 600ms;
-  animation-duration: 600ms;
-}
 
 
 

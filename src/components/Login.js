@@ -1,24 +1,22 @@
 import React, {Component} from 'react'
 import {Button, Form, Icon, Input} from 'antd'
 import {SocialIcon} from 'react-social-icons'
-import ComponentsControl from './ComponentsControl'
 import {withRouter} from 'react-router-dom'
 import axios from 'axios/index'
 
 class Login extends Component {
 
-    handleLogin = async(data, values) => {
+    handleLogin = async (data, values) => {
         try {
             const response = await axios({
                 method: 'post',
                 url: '/login',
                 data: data,
                 config: {headers: {'Content-Type': 'application/x-www-form-urlencoded',}}
-            })
+            });
             window.location = response.data
-        }
-        catch (error) {
-            const status = error.response.status
+        } catch (error) {
+            const status = error.response.status;
             status === 401 ?
                 this.props.form.setFields({
                     username: {
@@ -31,26 +29,24 @@ class Login extends Component {
                     }
                 }) : console.log(error)
         }
-    }
+    };
     handleSubmit = e => {
-        e.preventDefault()
-        let bodyFormData = new FormData()
+        e.preventDefault();
+        let bodyFormData = new FormData();
         this.props.form.validateFields(async (err, values) => {
             if (!err) {
-                bodyFormData.set('username', values.username)
-                bodyFormData.set('password', values.password)
+                bodyFormData.set('username', values.username);
+                bodyFormData.set('password', values.password);
                 this.handleLogin(bodyFormData, values)
             }
         })
-    }
+    };
 
 
     render() {
-        const {getFieldDecorator} = this.props.form
-        const {isLogin, goToNextForm} = this.props
+        const {getFieldDecorator} = this.props.form;
         return (
-            <div className={isLogin ? 'form flipInYMine' : 'form animated flipOutY faster'}>
-                <h2>Login</h2>
+            <div className={'form'}>
                 <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
                     <Form.Item>
                         {getFieldDecorator('username', {
@@ -77,17 +73,10 @@ class Login extends Component {
                         </Button>
                     </Form.Item>
                 </Form>
-                <div style={{width: '90%', display: 'flex', justifyContent: 'space-around'}}>
+                <div style={{display: 'flex', justifyContent: 'space-around'}}>
                     <SocialIcon network="google" url="/oauth2/authorization/google"/>
                     <SocialIcon network="github" url="/oauth2/authorization/github"/>
                     <SocialIcon network="facebook" url="/oauth2/authorization/facebook"/>
-                </div>
-                <div style={{display: 'flex', alignItems: 'center', flexFlow: 'column', marginTop: 20}}>
-                    <a onClick={() => goToNextForm('/registration')}>Sign up</a>
-                    <div>or</div>
-                    <p className="login-form-forgot">
-                        <a onClick={() => goToNextForm('/restore-password-init')}>Restore password</a>
-                    </p>
                 </div>
             </div>
         )
@@ -95,4 +84,4 @@ class Login extends Component {
 }
 
 
-export default withRouter(Form.create({name: 'normal_login'})(ComponentsControl(Login)))
+export default withRouter(Form.create({name: 'normal_login'})(Login))

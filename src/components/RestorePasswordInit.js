@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
-import {Button, Form, Icon, Input} from 'antd'
-import ComponentsControl from './ComponentsControl'
+import {Button, Form, Icon, Input, Modal} from 'antd'
 import {withRouter} from 'react-router-dom'
 import axios from "axios";
 
@@ -17,7 +16,10 @@ class RestorePasswordInit extends Component {
                     config: {headers: {'Content-Type': 'application/x-www-form-urlencoded',}}
                 })
                     .then(() => {
-                        this.props.resetPasswordInit()
+                        Modal.success({
+                            title: 'Check your email',
+                            content: 'We have just sent you a link to reset your password. This link is valid for 3 days!',
+                        });
                     })
                     .catch(error => {
                         const message = error.response.data.message;
@@ -38,10 +40,8 @@ class RestorePasswordInit extends Component {
 
     render() {
         const {getFieldDecorator} = this.props.form;
-        const {isRestorePassword} = this.props;
         return (
-            <div className={isRestorePassword ? 'form flipInYMine' : 'form animated flipOutY faster'}>
-                <h2>Forgot Password</h2>
+            <div className={'form'}>
                 <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
                     <Form.Item>
                         {getFieldDecorator('email', {
@@ -67,4 +67,4 @@ class RestorePasswordInit extends Component {
 }
 
 
-export default withRouter(Form.create({name: 'normal_restore_password_init'})(ComponentsControl(RestorePasswordInit)))
+export default withRouter(Form.create({name: 'normal_restore_password_init'})(RestorePasswordInit))
