@@ -9,7 +9,7 @@ const App = () =>
     <Switch>
         <Route exact path="/" render={() => (<Redirect to="/login"/>)}/>
         <Route exact path='/:tab(login|registration|restore)' component={Main}/>
-        <Route exact path='/activate/:key' component={Activate}/>
+        <Route exact path='/activate/:key/:redirectTo' component={Activate}/>
         <Route render={() => (<Redirect to="/login"/>)}/>
     </Switch>;
 export default App
