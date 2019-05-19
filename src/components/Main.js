@@ -27,7 +27,7 @@ class Main extends Component {
     getTitle = () => {
         switch (this.state.activeKey) {
             case 'login':
-                return 'Welcome';
+                return 'Login';
             case 'registration':
                 return 'Registration';
             case 'restore':
