@@ -41,27 +41,25 @@ class RestorePasswordInit extends Component {
     render() {
         const {getFieldDecorator} = this.props.form;
         return (
-            <div className={'form'}>
-                <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
-                    <Form.Item>
-                        {getFieldDecorator('email', {
-                            rules: [{
-                                type: 'email', message: 'The input is not valid e-mail!',
-                            }, {
-                                required: true, message: 'Please input your e-mail!',
-                            }],
-                        })(
-                            <Input prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                                   placeholder="E-mail"/>
-                        )}
-                    </Form.Item>
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit" className="form-button">
-                            Reset my Password
-                        </Button>
-                    </Form.Item>
-                </Form>
-            </div>
+            <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
+                <Form.Item>
+                    {getFieldDecorator('email', {
+                        rules: [{
+                            type: 'email', message: 'The input is not valid e-mail!',
+                        }, {
+                            required: true, message: 'Please input your e-mail!',
+                        }],
+                    })(
+                        <Input prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                               placeholder="E-mail"/>
+                    )}
+                </Form.Item>
+                <Form.Item>
+                    <Button type="primary" htmlType="submit" className="form-button">
+                        Reset my Password
+                    </Button>
+                </Form.Item>
+            </Form>
         )
     }
 }

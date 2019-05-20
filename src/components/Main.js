@@ -39,10 +39,10 @@ class Main extends Component {
     langMenu = (
         <Menu selectable={true}>
             <Menu.Item key="0">
-                <a >English</a>
+                <a>English</a>
             </Menu.Item>
             <Menu.Item key="1">
-                <a >Русский</a>
+                <a>Русский</a>
             </Menu.Item>
         </Menu>
     );
@@ -50,29 +50,30 @@ class Main extends Component {
     langDropDown = (
         <Dropdown overlay={this.langMenu} trigger={['click']}>
             <a className="ant-dropdown-link" href="#">
-                Lang <Icon type="down" />
+                Lang <Icon type="down"/>
             </a>
         </Dropdown>
     );
 
     render() {
         return <div className={'form_container'}>
-            <Card title={this.getTitle()} bordered={false} extra={this.langDropDown}>
-                <Tabs tabPosition={"bottom"}
-                      activeKey={this.state.activeKey}
-                      onChange={this.onTabChange}
-                size={"small"}>
-                    <Tabs.TabPane tab="Login" key="login">
-                        <Login/>
-                    </Tabs.TabPane>
-                    <Tabs.TabPane tab="Sign Up" key="registration">
-                        <Registration/>
-                    </Tabs.TabPane>
-                    <Tabs.TabPane tab="Restore" key="restore">
-                        <RestorePasswordInit/>
-                    </Tabs.TabPane>
-                </Tabs>
-            </Card>
+            <div className="form">
+                <Card title={this.getTitle()} bordered={false} extra={this.langDropDown}>
+                    <Tabs tabPosition={"bottom"}
+                          activeKey={this.state.activeKey}
+                          onChange={this.onTabChange}
+                          size={"small"}>
+                        <Tabs.TabPane tab="Login" key="login">
+                            <Login/>
+                        </Tabs.TabPane>
+                        <Tabs.TabPane tab="Sign Up" key="registration">
+                            <Registration/>
+                        </Tabs.TabPane>
+                        <Tabs.TabPane tab="Restore" key="restore">
+                            <RestorePasswordInit/>
+                        </Tabs.TabPane>
+                    </Tabs>
+                </Card></div>
         </div>
     }
 }

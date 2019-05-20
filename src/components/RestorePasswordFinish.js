@@ -20,7 +20,7 @@ class RestorePasswordFinish extends Component {
                 })
                     .then(() => {
                         Modal.success({
-                            onOk: ()=>{
+                            onOk: () => {
                                 this.props.history.replace(`/login`);
                             },
                             title: 'Your password has been successfully changed.',
@@ -46,8 +46,9 @@ class RestorePasswordFinish extends Component {
         const {getFieldDecorator} = this.props.form;
         return (
             <div className={'form_container'}>
-                <Card title={'Enter a new password'} bordered={false} style={{width: 350}}>
-                    <div className={'form'}>
+                <div className={'form'}>
+                    <Card title={'Enter a new password'} bordered={false} style={{width: 350}}>
+
                         <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
                             <Form.Item>
                                 {getFieldDecorator('password', {
@@ -86,8 +87,8 @@ class RestorePasswordFinish extends Component {
                                 </Button>
                             </Form.Item>
                         </Form>
-                    </div>
-                </Card>
+                    </Card>
+                </div>
             </div>
         )
     }

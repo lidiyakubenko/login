@@ -70,67 +70,64 @@ class Registration extends Component {
     render() {
         const {getFieldDecorator} = this.props.form;
         return (
-            <div className={'form'}>
-                {/*<h2 style={{textAlign:'center'}}>Registration</h2>*/}
-                <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
-                    <Form.Item>
-                        {getFieldDecorator('email', {
-                            rules: [{
-                                type: 'email', message: 'The input is not valid e-mail!',
+            <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
+                <Form.Item>
+                    {getFieldDecorator('email', {
+                        rules: [{
+                            type: 'email', message: 'The input is not valid e-mail!',
+                        }, {
+                            required: true, message: 'Please input your e-mail!',
+                        }],
+                    })(
+                        <Input prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                               placeholder="E-mail"/>
+                    )}
+                </Form.Item>
+                <Form.Item>
+                    {getFieldDecorator('username', {
+                        rules: [{required: true, message: 'Please input your login!'}],
+                    })(
+                        <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                               placeholder="Username"/>
+                    )}
+                </Form.Item>
+                <Form.Item>
+                    {getFieldDecorator('password', {
+                        rules: [
+                            {
+                                min: 6, message: 'At least six symbols!',
+                            },
+                            {
+                                required: true, message: 'Please input your password!',
                             }, {
-                                required: true, message: 'Please input your e-mail!',
-                            }],
-                        })(
-                            <Input prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                                   placeholder="E-mail"/>
-                        )}
-                    </Form.Item>
-                    <Form.Item>
-                        {getFieldDecorator('username', {
-                            rules: [{required: true, message: 'Please input your login!'}],
-                        })(
-                            <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                                   placeholder="Username"/>
-                        )}
-                    </Form.Item>
-                    <Form.Item>
-                        {getFieldDecorator('password', {
-                            rules: [
-                                {
-                                    min: 6, message: 'At least six symbols!',
-                                },
-                                {
-                                    required: true, message: 'Please input your password!',
-                                }, {
-                                    validator: this.validateToNextPassword,
-                                }
-                            ],
-                        })(
-                            <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                                   type="password" placeholder="Password"/>
-                        )}
-                    </Form.Item>
-                    <Form.Item>
-                        {getFieldDecorator('confirm', {
-                            rules: [{
-                                required: true, message: 'Please confirm your password!',
-                            }, {
-                                validator: this.compareToFirstPassword,
-                            }],
-                        })(
-                            <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                                   type="password"
-                                   placeholder="Confirm password"
-                                   onBlur={this.handleConfirmBlur}/>
-                        )}
-                    </Form.Item>
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit" className="form-button">
-                            Register
-                        </Button>
-                    </Form.Item>
-                </Form>
-            </div>
+                                validator: this.validateToNextPassword,
+                            }
+                        ],
+                    })(
+                        <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                               type="password" placeholder="Password"/>
+                    )}
+                </Form.Item>
+                <Form.Item>
+                    {getFieldDecorator('confirm', {
+                        rules: [{
+                            required: true, message: 'Please confirm your password!',
+                        }, {
+                            validator: this.compareToFirstPassword,
+                        }],
+                    })(
+                        <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                               type="password"
+                               placeholder="Confirm password"
+                               onBlur={this.handleConfirmBlur}/>
+                    )}
+                </Form.Item>
+                <Form.Item>
+                    <Button type="primary" htmlType="submit" className="form-button">
+                        Register
+                    </Button>
+                </Form.Item>
+            </Form>
         )
     }
 }
