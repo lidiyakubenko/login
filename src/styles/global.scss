@@ -1,11 +1,11 @@
-$width: 320px;
+$width: 344px;
 $height: 100%;
 
 @mixin form {
   //box-shadow: 0 0 4px 2px rgba(0, 0, 0, .1);
   //background-color: whitesmoke;
   //align-items: center;
-  //max-width: $width;
+  max-width: $width;
   //min-width: $width;
   //border-radius: 5px;
   display: flex;
@@ -28,9 +28,9 @@ $height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  .ant-card-head-title{
-    text-align: center;
-  }
+  //.ant-card-head-title{
+  //  text-align: center;
+  //}
   .form {
     padding: 0;
     @include form;
