@@ -2,11 +2,14 @@ import React, {Component} from 'react'
 import {Button, Form, Icon, Input, Modal} from 'antd'
 import {withRouter} from 'react-router-dom'
 import axios from "axios";
+import {injectIntl} from 'react-intl'
+import {messages} from './messages'
 
 class RestorePasswordInit extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
+        const {intl: {formatMessage}} = this.props
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 axios({
@@ -17,8 +20,8 @@ class RestorePasswordInit extends Component {
                 })
                     .then(() => {
                         Modal.success({
-                            title: 'Check your email',
-                            content: 'We have just sent you a link to reset your password. This link is valid for 3 days!',
+                            title: formatMessage(messages.restoreModalTitle),
+                            content: formatMessage(messages.restoreModalContent),
                         });
                     })
                     .catch(error => {
@@ -27,7 +30,7 @@ class RestorePasswordInit extends Component {
                             this.props.form.setFields({
                                 email: {
                                     value: values.email,
-                                    errors: [new Error('Email not found!')],
+                                    errors: [new Error(formatMessage(messages.notFoundEmail))],
                                 }
                             }) : console.log(message)
                     })
@@ -39,24 +42,25 @@ class RestorePasswordInit extends Component {
 
 
     render() {
+        const {intl: {formatMessage}} = this.props
         const {getFieldDecorator} = this.props.form;
         return (
             <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
                 <Form.Item>
                     {getFieldDecorator('email', {
                         rules: [{
-                            type: 'email', message: 'The input is not valid e-mail!',
+                            type: 'email', message: formatMessage(messages.isNotEmail),
                         }, {
-                            required: true, message: 'Please input your e-mail!',
+                            required: true, message: formatMessage(messages.emptyEmail),
                         }],
                     })(
                         <Input prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                               placeholder="E-mail"/>
+                               placeholder={formatMessage(messages.email)}/>
                     )}
                 </Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit" className="form-button">
-                        Reset my Password
+                        {formatMessage(messages.buttResetPass)}
                     </Button>
                 </Form.Item>
             </Form>
@@ -65,4 +69,4 @@ class RestorePasswordInit extends Component {
 }
 
 
-export default withRouter(Form.create({name: 'normal_restore_password_init'})(RestorePasswordInit))
+export default withRouter(injectIntl(Form.create({name: 'normal_restore_password_init'})(RestorePasswordInit)))

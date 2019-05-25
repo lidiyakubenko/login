@@ -1,0 +1,177 @@
+[
+  {
+    "id": "username",
+    "defaultMessage": "Username",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "password",
+    "defaultMessage": "Password",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "confirm.password",
+    "defaultMessage": "Confirm password",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "email",
+    "defaultMessage": "E-mail",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "login.button",
+    "defaultMessage": "Log in",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "register.button",
+    "defaultMessage": "Register",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "reset.password.button",
+    "defaultMessage": "Reset my Password",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "change.password.button",
+    "defaultMessage": "Change password",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "username.error.empty.message",
+    "defaultMessage": "Please input your username!",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "username.error.is.used.message",
+    "defaultMessage": "Username is already registered! Please choose another one.",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "password.error.empty.message",
+    "defaultMessage": "Please input your password!",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "password.error.min.length.message",
+    "defaultMessage": "At least six symbols!",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "password.error.confirm.message",
+    "defaultMessage": "Please confirm your password!",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "passwords.error.mismatch.message",
+    "defaultMessage": "Two passwords that you enter is inconsistent!",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "email.error.empty.message",
+    "defaultMessage": "Please input your e-mail!",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "email.error.is.used.message",
+    "defaultMessage": "Email is already in use! Please choose another one",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "email.error.not.valid.message",
+    "defaultMessage": "The input is not valid e-mail! There must be a '@' character and the name of the mail server. Example: 'example@gmail.com'",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "email.error.not.found.message",
+    "defaultMessage": "E-mail not found!",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "form.error.message",
+    "defaultMessage": "Could not log in. Recheck please login and password.",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "lang",
+    "defaultMessage": "lang",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "login.title",
+    "defaultMessage": "Login",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "registration.title",
+    "defaultMessage": "Registration",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "restore.password.title",
+    "defaultMessage": "Forgot Password",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "change.password.title",
+    "defaultMessage": "Enter a new password",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "login.tab",
+    "defaultMessage": "Login",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "registration.tab",
+    "defaultMessage": "Registration",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "restore.password.tab",
+    "defaultMessage": "Restore",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "modal.registration.title",
+    "defaultMessage": "Registration saved!",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "modal.registration.content",
+    "defaultMessage": "Please check your email for confirmation.",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "modal.restore.email.title",
+    "defaultMessage": "Check your email",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "modal.restore.email.content",
+    "defaultMessage": "We have just sent you a link to reset your password. This link is valid for 3 days!",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "modal.restore.password.title",
+    "defaultMessage": "Your password has been successfully changed.",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "modal.restore.password.content",
+    "defaultMessage": "You will now be redirected to the login page where you can use your new password to log in.",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "modal.restore.error.title",
+    "defaultMessage": "The link is invalid!",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "modal.restore.error.content",
+    "defaultMessage": "It was necessary to activate it within 3 days from the moment of sending. Try to reset the password again.",
+    "filepath": "src/components/messages.js"
+  }
+]

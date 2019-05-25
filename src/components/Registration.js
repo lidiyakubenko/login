@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {Button, Form, Icon, Input, Modal} from 'antd'
 import axios from 'axios/index'
+import {injectIntl} from 'react-intl'
+import {messages} from './messages'
 
 class Registration extends Component {
 
@@ -10,6 +12,7 @@ class Registration extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
+        const {intl: {formatMessage}} = this.props
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 axios({
@@ -20,8 +23,8 @@ class Registration extends Component {
                 })
                     .then(() => {
                         Modal.success({
-                            title: 'Registration saved!',
-                            content: 'Please check your email for confirmation.',
+                            title: formatMessage(messages.registerModalTitle),
+                            content: formatMessage(messages.registerModalContent),
                         });
                     })
                     .catch(error => {
@@ -30,14 +33,14 @@ class Registration extends Component {
                             this.props.form.setFields({
                                 email: {
                                     value: values.email,
-                                    errors: [new Error('Email is already in use! Please choose another one')],
+                                    errors: [new Error(formatMessage(messages.isUsedEmail))],
                                 }
                             }) :
                             message === 'user-exists' ?
                                 this.props.form.setFields({
                                     username: {
                                         value: values.username,
-                                        errors: [new Error('Username is already registered! Please choose another one')],
+                                        errors: [new Error(formatMessage(messages.isUsedName))],
                                     }
                                 }) : console.log(message)
                     })
@@ -47,8 +50,9 @@ class Registration extends Component {
 
     compareToFirstPassword = (rule, value, callback) => {
         const form = this.props.form;
+        const {intl: {formatMessage}} = this.props
         if (value && value !== form.getFieldValue('password')) {
-            callback('Two passwords that you enter is inconsistent!')
+            callback(formatMessage(messages.mismatchPasswords))
         } else {
             callback()
         }
@@ -68,63 +72,64 @@ class Registration extends Component {
     };
 
     render() {
+        const {intl: {formatMessage}} = this.props
         const {getFieldDecorator} = this.props.form;
         return (
             <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
                 <Form.Item>
                     {getFieldDecorator('email', {
                         rules: [{
-                            type: 'email', message: 'The input is not valid e-mail!',
+                            type: 'email', message: formatMessage(messages.isNotEmail),
                         }, {
-                            required: true, message: 'Please input your e-mail!',
+                            required: true, message: formatMessage(messages.emptyEmail),
                         }],
                     })(
                         <Input prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                               placeholder="E-mail"/>
+                               placeholder={formatMessage(messages.email)}/>
                     )}
                 </Form.Item>
                 <Form.Item>
                     {getFieldDecorator('username', {
-                        rules: [{required: true, message: 'Please input your login!'}],
+                        rules: [{required: true, message: formatMessage(messages.emptyName)}],
                     })(
                         <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                               placeholder="Username"/>
+                               placeholder={formatMessage(messages.username)}/>
                     )}
                 </Form.Item>
                 <Form.Item>
                     {getFieldDecorator('password', {
                         rules: [
                             {
-                                min: 6, message: 'At least six symbols!',
+                                min: 6, message:formatMessage(messages.minLengthPass),
                             },
                             {
-                                required: true, message: 'Please input your password!',
+                                required: true, message: formatMessage(messages.emptyPass),
                             }, {
                                 validator: this.validateToNextPassword,
                             }
                         ],
                     })(
                         <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                               type="password" placeholder="Password"/>
+                               type="password" placeholder={formatMessage(messages.password)}/>
                     )}
                 </Form.Item>
                 <Form.Item>
                     {getFieldDecorator('confirm', {
                         rules: [{
-                            required: true, message: 'Please confirm your password!',
+                            required: true, message: formatMessage(messages.emptyConfirm),
                         }, {
                             validator: this.compareToFirstPassword,
                         }],
                     })(
                         <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
                                type="password"
-                               placeholder="Confirm password"
+                               placeholder={formatMessage(messages.confirmPass)}
                                onBlur={this.handleConfirmBlur}/>
                     )}
                 </Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit" className="form-button">
-                        Register
+                        {formatMessage(messages.buttRegister)}
                     </Button>
                 </Form.Item>
             </Form>
@@ -133,6 +138,6 @@ class Registration extends Component {
 }
 
 
-export default Form.create({name: 'normal_registration'})(Registration)
+export default injectIntl(Form.create({name: 'normal_registration'})(Registration))
 
 

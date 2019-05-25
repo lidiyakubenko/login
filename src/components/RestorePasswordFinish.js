@@ -1,12 +1,15 @@
 import React, {Component} from 'react'
 import {Button, Card, Form, Icon, Input, Modal} from 'antd'
 import {withRouter} from 'react-router-dom'
-import axios from "axios";
+import axios from 'axios'
+import {injectIntl} from 'react-intl'
+import {messages} from './messages'
 
 class RestorePasswordFinish extends Component {
 
     handleSubmit = e => {
-        e.preventDefault();
+        e.preventDefault()
+        const {intl: {formatMessage}} = this.props
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 axios({
@@ -21,43 +24,44 @@ class RestorePasswordFinish extends Component {
                     .then(() => {
                         Modal.success({
                             onOk: () => {
-                                this.props.history.replace(`/login`);
+                                this.props.history.replace(`/login`)
                             },
-                            title: 'Your password has been successfully changed.',
-                            content: 'You will now be redirected to the login page where you can use your new password to log in.',
-                        });
+                            title: formatMessage(messages.changePassModalTitle),
+                            content: formatMessage(messages.changePassModalContent),
+                        })
                     })
                     .catch(error => {
-                        const message = error.response.data.message;
+                        const message = error.response.data.message
                         message === 'reset-key-not-found' ?
                             Modal.error({
-                                title: 'Invalid reset key',
-                                content: 'No user was found for this reset key!',
+                                title: formatMessage(messages.restoreErrModalTitle),
+                                content: formatMessage(messages.restoreErrModalContent),
                             }) : console.log(message)
                     })
 
 
             }
         })
-    };
+    }
 
 
     render() {
-        const {getFieldDecorator} = this.props.form;
+        const {intl: {formatMessage}} = this.props
+        const {getFieldDecorator} = this.props.form
         return (
             <div className={'form_container'}>
                 <div className={'form'}>
-                    <Card title={'Enter a new password'} bordered={false} style={{width: 350}}>
+                    <Card title={formatMessage(messages.restore)} bordered={false} style={{width: 350}}>
 
                         <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
                             <Form.Item>
                                 {getFieldDecorator('password', {
                                     rules: [
                                         {
-                                            min: 6, message: 'At least six symbols!',
+                                            min: 6, message: formatMessage(messages.minLengthPass),
                                         },
                                         {
-                                            required: true, message: 'Please input your password!',
+                                            required: true, message: formatMessage(messages.emptyPass),
                                         }, {
                                             validator: this.validateToNextPassword,
                                         }
@@ -70,20 +74,20 @@ class RestorePasswordFinish extends Component {
                             <Form.Item>
                                 {getFieldDecorator('confirm', {
                                     rules: [{
-                                        required: true, message: 'Please confirm your password!',
+                                        required: true, message: formatMessage(messages.emptyConfirm),
                                     }, {
                                         validator: this.compareToFirstPassword,
                                     }],
                                 })(
                                     <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
                                            type="password"
-                                           placeholder="Confirm password"
+                                           placeholder={formatMessage(messages.confirmPass)}
                                            onBlur={this.handleConfirmBlur}/>
                                 )}
                             </Form.Item>
                             <Form.Item>
                                 <Button type="primary" htmlType="submit" className="form-button">
-                                    Change password
+                                    {formatMessage(messages.buttChangePass)}
                                 </Button>
                             </Form.Item>
                         </Form>
@@ -95,4 +99,4 @@ class RestorePasswordFinish extends Component {
 }
 
 
-export default withRouter(Form.create({name: 'normal_restore_password_finish'})(RestorePasswordFinish))
+export default withRouter(injectIntl(Form.create({name: 'normal_restore_password_finish'})(RestorePasswordFinish)))
