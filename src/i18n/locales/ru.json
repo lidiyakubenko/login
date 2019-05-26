@@ -5,9 +5,9 @@
   "email": "E-mail",
   "email.error.empty.message": "Пожалуйста, введите ваш e-mail!",
   "email.error.is.used.message": "Такой e-mail уже используется.",
-  "email.error.not.found.message": "E-mail не найден!",
+  "email.error.not.found.message": "Такой E-mail не зарегистрирован!",
   "email.error.not.valid.message": "Неверный формат e-mail! Должен быть символ '@' и имя название почтового сервера. Пример: 'example@mail.ru'.",
-  "form.error.message": "Не удаётся войти. Проверьте логин и пароль.",
+  "form.error.message": "Не удалось войти! Пожалуйста, проверьте ваши учетные данные и попробуйте еще раз.",
   "lang": "язык",
   "login.button": "Войти",
   "login.tab": "Вход",
@@ -23,8 +23,8 @@
   "password": "Пароль",
   "password.error.confirm.message": "Пожалуйста, подтвердите ваш пароль!",
   "password.error.empty.message": "Пожалуйста, введите пароль!",
-  "password.error.min.length.message": "Не менее 6 символов.",
-  "passwords.error.mismatch.message": "Два пароля, которые вы вводите, несовместимы!",
+  "password.error.min.length.message": "Ваш пароль должен содержать хотя бы 6 символов.",
+  "passwords.error.mismatch.message": "Пароль и его подтверждение не совпадают!",
   "register.button": "Зарегистрироваться",
   "registration.tab": "Регистрация",
   "registration.title": "Регистрация",
@@ -32,6 +32,6 @@
   "restore.password.tab": "Забыл пароль",
   "restore.password.title": "Восстановление пароля",
   "username": "Имя пользователя",
-  "username.error.empty.message": "Пожалуйста, придумайте имя!",
-  "username.error.is.used.message": "Такое имя уже используется."
+  "username.error.empty.message": "Пожалуйста, придумайте имя.Оно должен содержать только буквы и цифры",
+  "username.error.is.used.message": "Такое имя уже используется. Пожалуйста, выберите другое."
 }

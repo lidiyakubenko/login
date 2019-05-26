@@ -41,7 +41,7 @@
   },
   {
     "id": "username.error.empty.message",
-    "defaultMessage": "Please input your username!",
+    "defaultMessage": "Your username is required.",
     "filepath": "src/components/messages.js"
   },
   {
@@ -51,17 +51,17 @@
   },
   {
     "id": "password.error.empty.message",
-    "defaultMessage": "Please input your password!",
+    "defaultMessage": "Your password is required.",
     "filepath": "src/components/messages.js"
   },
   {
     "id": "password.error.min.length.message",
-    "defaultMessage": "At least six symbols!",
+    "defaultMessage": "Your password is required to be at least 6 character",
     "filepath": "src/components/messages.js"
   },
   {
     "id": "password.error.confirm.message",
-    "defaultMessage": "Please confirm your password!",
+    "defaultMessage": "Please confirm your password.",
     "filepath": "src/components/messages.js"
   },
   {
@@ -71,12 +71,12 @@
   },
   {
     "id": "email.error.empty.message",
-    "defaultMessage": "Please input your e-mail!",
+    "defaultMessage": "Your E-mail is required.",
     "filepath": "src/components/messages.js"
   },
   {
     "id": "email.error.is.used.message",
-    "defaultMessage": "Email is already in use! Please choose another one",
+    "defaultMessage": "Email is already in use! Please choose another one.",
     "filepath": "src/components/messages.js"
   },
   {
@@ -86,7 +86,7 @@
   },
   {
     "id": "email.error.not.found.message",
-    "defaultMessage": "E-mail not found!",
+    "defaultMessage": "Email address isn't registered! Please check and try again",
     "filepath": "src/components/messages.js"
   },
   {
@@ -171,7 +171,7 @@
   },
   {
     "id": "modal.restore.error.content",
-    "defaultMessage": "It was necessary to activate it within 3 days from the moment of sending. Try to reset the password again.",
+    "defaultMessage": "Remember a password request is only valid for 3 days. Try to reset the password again.",
     "filepath": "src/components/messages.js"
   }
 ]
