@@ -3,6 +3,7 @@ import {Button, Form, Icon, Input, Modal} from 'antd'
 import axios from 'axios/index'
 import {injectIntl} from 'react-intl'
 import {messages} from './messages'
+import {withRouter} from 'react-router-dom'
 
 class Registration extends Component {
 
@@ -72,9 +73,10 @@ class Registration extends Component {
     };
 
     render() {
-        const {intl: {formatMessage}} = this.props
+        const {intl: {formatMessage},history,match} = this.props
         const {getFieldDecorator} = this.props.form;
         return (
+            <div>
             <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
                 <Form.Item>
                     {getFieldDecorator('email', {
@@ -133,11 +135,17 @@ class Registration extends Component {
                     </Button>
                 </Form.Item>
             </Form>
+                <div style={{display: 'flex', alignItems: 'center', flexFlow: 'column', marginTop: 20}}>
+                    <a onClick={() => history.replace(`/${match.params.lang}/login`)}>Log in</a>
+                    <div>or</div>
+                    <a onClick={() => history.replace(`/${match.params.lang}/restore`)}>Restore password</a>
+                </div>
+            </div>
         )
     }
 }
 
 
-export default injectIntl(Form.create({name: 'normal_registration'})(Registration))
+export default withRouter(injectIntl(Form.create({name: 'normal_registration'})(Registration)))
 
 

@@ -1,14 +1,14 @@
 import React, {Component} from 'react'
 import {Button, Form, Icon, Input, Modal} from 'antd'
 import {withRouter} from 'react-router-dom'
-import axios from "axios";
+import axios from 'axios'
 import {injectIntl} from 'react-intl'
 import {messages} from './messages'
 
 class RestorePasswordInit extends Component {
 
     handleSubmit = e => {
-        e.preventDefault();
+        e.preventDefault()
         const {intl: {formatMessage}} = this.props
         this.props.form.validateFields((err, values) => {
             if (!err) {
@@ -22,10 +22,10 @@ class RestorePasswordInit extends Component {
                         Modal.success({
                             title: formatMessage(messages.restoreModalTitle),
                             content: formatMessage(messages.restoreModalContent),
-                        });
+                        })
                     })
                     .catch(error => {
-                        const message = error.response.data.message;
+                        const message = error.response.data.message
                         message === 'email-not-found' ?
                             this.props.form.setFields({
                                 email: {
@@ -38,32 +38,42 @@ class RestorePasswordInit extends Component {
 
             }
         })
-    };
+    }
 
 
     render() {
-        const {intl: {formatMessage}} = this.props
-        const {getFieldDecorator} = this.props.form;
+        const {intl: {formatMessage}, history, match} = this.props
+        const {getFieldDecorator} = this.props.form
         return (
-            <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
-                <Form.Item>
-                    {getFieldDecorator('email', {
-                        rules: [{
-                            type: 'email', message: formatMessage(messages.isNotEmail),
-                        }, {
-                            required: true, message: formatMessage(messages.emptyEmail),
-                        }],
-                    })(
-                        <Input prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                               placeholder={formatMessage(messages.email)}/>
-                    )}
-                </Form.Item>
-                <Form.Item>
-                    <Button type="primary" htmlType="submit" className="form-button">
-                        {formatMessage(messages.buttResetPass)}
-                    </Button>
-                </Form.Item>
-            </Form>
+            <div>
+                <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
+                    <Form.Item>
+                        {getFieldDecorator('email', {
+                            rules: [{
+                                type: 'email', message: formatMessage(messages.isNotEmail),
+                            }, {
+                                required: true, message: formatMessage(messages.emptyEmail),
+                            }],
+                        })(
+                            <Input prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                                   placeholder={formatMessage(messages.email)}/>
+                        )}
+                    </Form.Item>
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit" className="form-button">
+                            {formatMessage(messages.buttResetPass)}
+                        </Button>
+                    </Form.Item>
+                </Form>
+                <div style={{display:'flex',justifyContent:'center'}}>
+                    <div>
+                        Return to
+                        <a onClick={() => history.replace(`/${match.params.lang}/login`)}> Login </a>
+                    or
+                    <a onClick={() => history.replace(`/${match.params.lang}/registration`)}> Sign up</a>
+                    </div>
+                </div>
+            </div>
         )
     }
 }

@@ -1,20 +1,26 @@
-$width: 344px;
+$width: 300px;
 $height: 100%;
 
 @mixin form {
-  //box-shadow: 0 0 4px 2px rgba(0, 0, 0, .1);
-  //background-color: whitesmoke;
+  box-shadow: 0 0 4px 2px rgba(0, 0, 0, .1);
+  background-color: whitesmoke;
   //align-items: center;
   max-width: $width;
-  //min-width: $width;
-  //border-radius: 5px;
+  min-width: $width;
+  //border-radius: 55px;
   display: flex;
   flex-flow: column;
 }
 
 .root_container {
+  overflow:  auto;
   height: $height;
   background: url("./pictures/Subtle-Prism.svg");
+  position: fixed;
+  top:0;
+  bottom:0;
+  right: 0;
+  left: 0;
 }
 
 .message_form {

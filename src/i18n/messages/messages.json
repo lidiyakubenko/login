@@ -81,7 +81,7 @@
   },
   {
     "id": "email.error.not.valid.message",
-    "defaultMessage": "The input is not valid e-mail! There must be a '@' character and the name of the mail server. Example: 'example@gmail.com'",
+    "defaultMessage": "The input is not valid e-mail!",
     "filepath": "src/components/messages.js"
   },
   {

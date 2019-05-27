@@ -6,7 +6,7 @@
   "email.error.empty.message": "Your E-mail is required.",
   "email.error.is.used.message": "Email is already in use! Please choose another one.",
   "email.error.not.found.message": "Email address isn't registered! Please check and try again",
-  "email.error.not.valid.message": "The input is not valid e-mail! There must be a '@' character and the name of the mail server. Example: 'example@gmail.com'",
+  "email.error.not.valid.message": "The input is not valid e-mail!",
   "form.error.message": "Could not log in. Recheck please login and password.",
   "lang": "lang",
   "login.button": "Log in",

@@ -26,8 +26,8 @@ class Main extends Component {
     }
 
     getTitle = () => {
-        const {intl: {formatMessage}} = this.props
-        switch (this.state.activeKey) {
+        const {intl: {formatMessage},match} = this.props
+        switch (match.params.tab) {
             case 'login':
                 return formatMessage(messages.login)
             case 'registration':
@@ -55,7 +55,7 @@ class Main extends Component {
         )
     }
 
-    langDropDown = ()=> {
+    langDropDown = () => {
         const {intl: {formatMessage}} = this.props
         return (
             <Dropdown overlay={this.langMenu} trigger={['click']}>
@@ -67,25 +67,16 @@ class Main extends Component {
     }
 
     render() {
-        const {intl: {formatMessage}} = this.props
-        return <div className={'form_container'}>
+        const {intl: {formatMessage},match} = this.props
+        return <div className='form_container'>
             <div className="form">
                 <Card title={this.getTitle()} bordered={false} extra={this.langDropDown()}>
-                    <Tabs tabPosition={'bottom'}
-                          activeKey={this.state.activeKey}
-                          onChange={this.onTabChange}
-                          size={'small'}>
-                        <Tabs.TabPane tab={formatMessage(messages.loginTab)} key="login">
-                            <Login/>
-                        </Tabs.TabPane>
-                        <Tabs.TabPane tab={formatMessage(messages.registrationTab)} key="registration">
-                            <Registration/>
-                        </Tabs.TabPane>
-                        <Tabs.TabPane tab={formatMessage(messages.restoreTab)} key="restore">
-                            <RestorePasswordInit/>
-                        </Tabs.TabPane>
-                    </Tabs>
-                </Card></div>
+                    {match.params.tab === 'login' ?
+                        <Login/> : match.params.tab === 'registration' ?
+                            <Registration/> : <RestorePasswordInit/>
+                    }
+                </Card>
+            </div>
         </div>
     }
 }

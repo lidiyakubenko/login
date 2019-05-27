@@ -49,14 +49,14 @@ class Login extends Component {
 
     render() {
         const {getFieldDecorator} = this.props.form
-        const {intl: {formatMessage}} = this.props
+        const {intl: {formatMessage}, match,history} = this.props
         return (
             <div>
                 <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
                     <Form.Item>
                         {getFieldDecorator('username', {
                             rules: [
-                                {required: true, message:formatMessage(messages.emptyName)},
+                                {required: true, message: formatMessage(messages.emptyName)},
                             ],
                         })(
                             <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
@@ -66,7 +66,7 @@ class Login extends Component {
                     <Form.Item>
                         {getFieldDecorator('password', {
                             rules: [
-                                {required: true, message:formatMessage(messages.emptyPass)}]
+                                {required: true, message: formatMessage(messages.emptyPass)}]
                         })(
                             <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>} type="password"
                                    autoComplete='current-password' placeholder={formatMessage(messages.password)}/>
@@ -82,6 +82,11 @@ class Login extends Component {
                     <SocialIcon network="google" url="/oauth2/authorization/google"/>
                     <SocialIcon network="github" url="/oauth2/authorization/github"/>
                     <SocialIcon network="facebook" url="/oauth2/authorization/facebook"/>
+                </div>
+                <div style={{display: 'flex', alignItems: 'center', flexFlow: 'column', marginTop: 20}}>
+                    <a onClick={() => history.replace(`/${match.params.lang}/registration`)}>Sign up</a>
+                    <div>or</div>
+                    <a onClick={() => history.replace(`/${match.params.lang}/restore`)}>Restore password</a>
                 </div>
             </div>
         )
