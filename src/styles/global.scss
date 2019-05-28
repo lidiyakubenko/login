@@ -1,19 +1,19 @@
-$width: 300px;
+$width: 330px;
 $height: 100%;
 
 @mixin form {
   box-shadow: 0 0 4px 2px rgba(0, 0, 0, .1);
   background-color: whitesmoke;
   //align-items: center;
-  max-width: $width;
+  max-width: 330px;
   min-width: $width;
-  //border-radius: 55px;
+  border-radius: 5px;
   display: flex;
   flex-flow: column;
 }
 
 .root_container {
-  overflow:  auto;
+  overflow:  hidden;
   height: $height;
   background: url("./pictures/Subtle-Prism.svg");
   position: fixed;
@@ -49,6 +49,33 @@ $height: 100%;
   }
 }
 
+@keyframes turnOverInY {
+  from {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    opacity: 0;
+  }
+
+  70% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -2deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, -2deg);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: perspective(400px);
+    transform: perspective(400px);
+  }
+
+}
+
+.flipInYMine {
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+  -webkit-animation-name: turnOverInY;
+  animation-name: turnOverInY;
+  -webkit-animation-duration: 500ms;
+  animation-duration: 500ms;
+}
 
 
 

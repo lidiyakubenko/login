@@ -42,7 +42,7 @@ class RestorePasswordInit extends Component {
 
 
     render() {
-        const {intl: {formatMessage}, history, match} = this.props
+        const {intl: {formatMessage}, history, match, redirectToUrl} = this.props
         const {getFieldDecorator} = this.props.form
         return (
             <div>
@@ -65,12 +65,12 @@ class RestorePasswordInit extends Component {
                         </Button>
                     </Form.Item>
                 </Form>
-                <div style={{display:'flex',justifyContent:'center'}}>
+                <div style={{display: 'flex', justifyContent: 'center'}}>
                     <div>
-                        Return to
-                        <a onClick={() => history.replace(`/${match.params.lang}/login`)}> Login </a>
-                    or
-                    <a onClick={() => history.replace(`/${match.params.lang}/registration`)}> Sign up</a>
+                        {formatMessage(messages.returnTo)}
+                        <a onClick={() => redirectToUrl('login')}> {formatMessage(messages.loginLink)} </a>
+                        {formatMessage(messages.or)}
+                        <a onClick={() => redirectToUrl('registration')}> {formatMessage(messages.registerLink)}</a>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Button, Form, Icon, Input} from 'antd'
+import {Button, Checkbox, Form, Icon, Input} from 'antd'
 import {SocialIcon} from 'react-social-icons'
 import {withRouter} from 'react-router-dom'
 import axios from 'axios/index'
@@ -49,18 +49,18 @@ class Login extends Component {
 
     render() {
         const {getFieldDecorator} = this.props.form
-        const {intl: {formatMessage}, match,history} = this.props
+        const {intl: {formatMessage}, match, history, redirectToUrl} = this.props
         return (
             <div>
                 <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
                     <Form.Item>
                         {getFieldDecorator('username', {
                             rules: [
-                                {required: true, message: formatMessage(messages.emptyName)},
+                                {required: true, message: formatMessage(messages.emptyLogName)},
                             ],
                         })(
                             <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                                   autoComplete='username' placeholder={formatMessage(messages.username)}/>
+                                   autoComplete='username' placeholder={formatMessage(messages.nameLogin)}/>
                         )}
                     </Form.Item>
                     <Form.Item>
@@ -73,6 +73,15 @@ class Login extends Component {
                         )}
                     </Form.Item>
                     <Form.Item>
+                        {getFieldDecorator('remember', {
+                            valuePropName: 'checked',
+                            initialValue: true,
+                        })(<Checkbox>{formatMessage(messages.rememberMe)}</Checkbox>)}
+                        <a
+                            className="login-form-forgot"
+                            onClick={() => redirectToUrl('restore')}>
+                            {formatMessage(messages.forgotPassLink)}
+                        </a>
                         <Button type="primary" htmlType="submit" className="form-button">
                             {formatMessage(messages.buttLogin)}
                         </Button>
@@ -83,11 +92,15 @@ class Login extends Component {
                     <SocialIcon network="github" url="/oauth2/authorization/github"/>
                     <SocialIcon network="facebook" url="/oauth2/authorization/facebook"/>
                 </div>
-                <div style={{display: 'flex', alignItems: 'center', flexFlow: 'column', marginTop: 20}}>
-                    <a onClick={() => history.replace(`/${match.params.lang}/registration`)}>Sign up</a>
-                    <div>or</div>
-                    <a onClick={() => history.replace(`/${match.params.lang}/restore`)}>Restore password</a>
+                <div style={{display: 'flex', justifyContent: 'center', marginTop: 20}}>
+                    <div>
+                        {formatMessage(messages.or)}
+                        <a onClick={() => redirectToUrl('registration')}>
+                            {formatMessage(messages.registerNowLink)}
+                        </a>
+                    </div>
                 </div>
+
             </div>
         )
     }

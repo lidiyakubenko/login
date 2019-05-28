@@ -1,8 +1,20 @@
 import {defineMessages} from 'react-intl'
 
 export const messages = defineMessages({
-    username: {
-        'id': 'username',
+    or: {
+        'id': 'or',
+    },
+    returnTo: {
+        'id': 'return.to',
+    },
+    nameRegister: {
+        'id': 'username.registration',
+    },
+    nameLogin: {
+        'id': 'username.login',
+    },
+    rememberMe: {
+        'id': 'remember.me',
     },
     password: {
         'id': 'password',
@@ -25,8 +37,11 @@ export const messages = defineMessages({
     buttChangePass: {
         'id': 'change.password.button',
     },
-    emptyName: {
-        'id': 'username.error.empty.message',
+    emptyLogName: {
+        'id': 'username.login.error.empty.message',
+    },
+    emptyRegName: {
+        'id': 'username.registration.error.empty.message',
     },
     isUsedName: {
         'id': 'username.error.is.used.message'
@@ -73,14 +88,18 @@ export const messages = defineMessages({
     titleChangePass: {
         'id': 'change.password.title',
     },
-    loginTab: {
-        'id': 'login.tab'
+
+    loginLink: {
+        'id': 'login.link',
     },
-    registrationTab: {
-        'id': 'registration.tab'
+    registerLink: {
+        'id': 'registration.link',
     },
-    restoreTab: {
-        'id': 'restore.password.tab'
+    registerNowLink: {
+        'id': 'register.now.link',
+    },
+    forgotPassLink: {
+        'id': 'forgot.password.link',
     },
     registerModalTitle: {
         'id': 'modal.registration.title'

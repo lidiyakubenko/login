@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import '../styles/global.scss'
 import 'animate.css'
-import {Card, Dropdown, Icon, Menu, Tabs} from 'antd'
+import {Card, Dropdown, Icon, Menu} from 'antd'
 import Login from './Login'
 import Registration from './Registration'
 import RestorePasswordInit from './RestorePasswordInit'
@@ -12,21 +12,18 @@ import {messages} from './messages'
 
 class Main extends Component {
 
-    constructor(props, context) {
-        super(props, context)
-        this.state = {
-            activeKey: props.match.params.tab
-        }
+    state = {
+        isRedirect: false
     }
 
-    onTabChange = (key) => {
-        this.props.history.replace(`${key}`)
-        this.setState({activeKey: key})
-
+    redirectToUrl = tab => {
+        const {match, history} = this.props
+        this.setState({isRedirect: true})
+        setTimeout(() => history.replace(`/${match.params.lang}/${tab}`), 400)
+        setTimeout(() => this.setState({isRedirect: false}), 450)
     }
-
     getTitle = () => {
-        const {intl: {formatMessage},match} = this.props
+        const {intl: {formatMessage}, match} = this.props
         switch (match.params.tab) {
             case 'login':
                 return formatMessage(messages.login)
@@ -35,7 +32,7 @@ class Main extends Component {
             case 'restore':
                 return formatMessage(messages.restore)
             default:
-                return this.state.activeKey.charAt(0).toUpperCase() + this.state.activeKey.slice(1)
+                return match.params.tab.charAt(0).toUpperCase() + match.params.tab.slice(1)
         }
     }
 
@@ -67,17 +64,21 @@ class Main extends Component {
     }
 
     render() {
-        const {intl: {formatMessage},match} = this.props
-        return <div className='form_container'>
-            <div className="form">
-                <Card title={this.getTitle()} bordered={false} extra={this.langDropDown()}>
-                    {match.params.tab === 'login' ?
-                        <Login/> : match.params.tab === 'registration' ?
-                            <Registration/> : <RestorePasswordInit/>
-                    }
-                </Card>
-            </div>
-        </div>
+        const {isRedirect} = this.state
+        const {match} = this.props
+        return (
+            <div className='form_container'>
+                <div className={!isRedirect ? 'form flipInYMine' : 'form animated flipOutY faster'}>
+                    <Card title={this.getTitle()} bordered={false} extra={this.langDropDown()}>
+                        {match.params.tab === 'login' ?
+                            <Login redirectToUrl={this.redirectToUrl}/> : match.params.tab === 'registration' ?
+                                <Registration redirectToUrl={this.redirectToUrl}/>
+                                :
+                                <RestorePasswordInit redirectToUrl={this.redirectToUrl}/>
+                        }
+                    </Card>
+                </div>
+            </div>)
     }
 }
 

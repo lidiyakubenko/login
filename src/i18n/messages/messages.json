@@ -1,7 +1,27 @@
 [
   {
-    "id": "username",
+    "id": "or",
+    "defaultMessage": " or ",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "return.to",
+    "defaultMessage": "Return to ",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "username.registration",
     "defaultMessage": "Username",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "username.login",
+    "defaultMessage": "Username or e-mail",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "remember.me",
+    "defaultMessage": "Remember me",
     "filepath": "src/components/messages.js"
   },
   {
@@ -40,7 +60,12 @@
     "filepath": "src/components/messages.js"
   },
   {
-    "id": "username.error.empty.message",
+    "id": "username.login.error.empty.message",
+    "defaultMessage": "Please input your username or e-mail.",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "username.registration.error.empty.message",
     "defaultMessage": "Your username is required.",
     "filepath": "src/components/messages.js"
   },
@@ -71,7 +96,7 @@
   },
   {
     "id": "email.error.empty.message",
-    "defaultMessage": "Your E-mail is required.",
+    "defaultMessage": "Your e-mail is required.",
     "filepath": "src/components/messages.js"
   },
   {
@@ -120,18 +145,23 @@
     "filepath": "src/components/messages.js"
   },
   {
-    "id": "login.tab",
+    "id": "login.link",
     "defaultMessage": "Login",
     "filepath": "src/components/messages.js"
   },
   {
-    "id": "registration.tab",
-    "defaultMessage": "Registration",
+    "id": "registration.link",
+    "defaultMessage": "Sign up",
     "filepath": "src/components/messages.js"
   },
   {
-    "id": "restore.password.tab",
-    "defaultMessage": "Restore",
+    "id": "register.now.link",
+    "defaultMessage": "Register now!",
+    "filepath": "src/components/messages.js"
+  },
+  {
+    "id": "forgot.password.link",
+    "defaultMessage": "Forgot password",
     "filepath": "src/components/messages.js"
   },
   {
