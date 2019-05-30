@@ -33,6 +33,7 @@
   "registration.title": "Регистрация",
   "remember.me": "Запомнить меня",
   "reset.password.button": "Сбросить пароль",
+  "restore.finish.title": "Сброс пароля",
   "restore.password.title": "Восстановление пароля",
   "return.to": "Вернуться к ",
   "username.error.is.used.message": "Такое имя уже используется! Пожалуйста, выберите другое.",

@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {Button, Checkbox, Form, Icon, Input} from 'antd'
 import {SocialIcon} from 'react-social-icons'
-import {withRouter} from 'react-router-dom'
 import axios from 'axios/index'
 import {injectIntl} from 'react-intl'
 import {messages} from './messages'
@@ -49,7 +48,7 @@ class Login extends Component {
 
     render() {
         const {getFieldDecorator} = this.props.form
-        const {intl: {formatMessage}, match, history, redirectToUrl} = this.props
+        const {intl: {formatMessage}, redirectToUrl} = this.props
         return (
             <div>
                 <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
@@ -106,4 +105,4 @@ class Login extends Component {
     }
 }
 
-export default withRouter(injectIntl(Form.create({name: 'normal_login'})(Login)))
+export default injectIntl(Form.create({name: 'normal_login'})(Login))

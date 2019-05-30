@@ -85,6 +85,9 @@ export const messages = defineMessages({
     restore: {
         'id': 'restore.password.title'
     },
+    restoreFinish: {
+        'id': 'restore.finish.title',
+    },
     titleChangePass: {
         'id': 'change.password.title',
     },

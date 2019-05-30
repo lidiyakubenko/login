@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {Button, Form, Icon, Input, Modal} from 'antd'
-import {withRouter} from 'react-router-dom'
 import axios from 'axios'
 import {injectIntl} from 'react-intl'
 import {messages} from './messages'
@@ -42,7 +41,7 @@ class RestorePasswordInit extends Component {
 
 
     render() {
-        const {intl: {formatMessage}, history, match, redirectToUrl} = this.props
+        const {intl: {formatMessage}, redirectToUrl} = this.props
         const {getFieldDecorator} = this.props.form
         return (
             <div>
@@ -79,4 +78,4 @@ class RestorePasswordInit extends Component {
 }
 
 
-export default withRouter(injectIntl(Form.create({name: 'normal_restore_password_init'})(RestorePasswordInit)))
+export default injectIntl(Form.create({name: 'normal_restore_password_init'})(RestorePasswordInit))

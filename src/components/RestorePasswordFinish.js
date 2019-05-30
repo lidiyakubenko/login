@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
-import {Button, Card, Form, Icon, Input, Modal} from 'antd'
-import {withRouter} from 'react-router-dom'
+import {Button, Form, Icon, Input, Modal} from 'antd'
 import axios from 'axios'
 import {injectIntl} from 'react-intl'
 import {messages} from './messages'
@@ -49,54 +48,47 @@ class RestorePasswordFinish extends Component {
         const {intl: {formatMessage}} = this.props
         const {getFieldDecorator} = this.props.form
         return (
-            <div className={'form_container'}>
-                <div className={'form'}>
-                    <Card title={formatMessage(messages.restore)} bordered={false} style={{width: 350}}>
-
-                        <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
-                            <Form.Item>
-                                {getFieldDecorator('password', {
-                                    rules: [
-                                        {
-                                            min: 6, message: formatMessage(messages.minLengthPass),
-                                        },
-                                        {
-                                            required: true, message: formatMessage(messages.emptyPass),
-                                        }, {
-                                            validator: this.validateToNextPassword,
-                                        }
-                                    ],
-                                })(
-                                    <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                                           type="password" placeholder="Password"/>
-                                )}
-                            </Form.Item>
-                            <Form.Item>
-                                {getFieldDecorator('confirm', {
-                                    rules: [{
-                                        required: true, message: formatMessage(messages.emptyConfirm),
-                                    }, {
-                                        validator: this.compareToFirstPassword,
-                                    }],
-                                })(
-                                    <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                                           type="password"
-                                           placeholder={formatMessage(messages.confirmPass)}
-                                           onBlur={this.handleConfirmBlur}/>
-                                )}
-                            </Form.Item>
-                            <Form.Item>
-                                <Button type="primary" htmlType="submit" className="form-button">
-                                    {formatMessage(messages.buttChangePass)}
-                                </Button>
-                            </Form.Item>
-                        </Form>
-                    </Card>
-                </div>
-            </div>
+            <Form style={{width: '100%'}} onSubmit={this.handleSubmit}>
+                <Form.Item>
+                    {getFieldDecorator('password', {
+                        rules: [
+                            {
+                                min: 6, message: formatMessage(messages.minLengthPass),
+                            },
+                            {
+                                required: true, message: formatMessage(messages.emptyPass),
+                            }, {
+                                validator: this.validateToNextPassword,
+                            }
+                        ],
+                    })(
+                        <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                               type="password" placeholder={formatMessage(messages.password)}/>
+                    )}
+                </Form.Item>
+                <Form.Item>
+                    {getFieldDecorator('confirm', {
+                        rules: [{
+                            required: true, message: formatMessage(messages.emptyConfirm),
+                        }, {
+                            validator: this.compareToFirstPassword,
+                        }],
+                    })(
+                        <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                               type="password"
+                               placeholder={formatMessage(messages.confirmPass)}
+                               onBlur={this.handleConfirmBlur}/>
+                    )}
+                </Form.Item>
+                <Form.Item>
+                    <Button type="primary" htmlType="submit" className="form-button">
+                        {formatMessage(messages.buttChangePass)}
+                    </Button>
+                </Form.Item>
+            </Form>
         )
     }
 }
 
 
-export default withRouter(injectIntl(Form.create({name: 'normal_restore_password_finish'})(RestorePasswordFinish)))
+export default injectIntl(Form.create({name: 'normal_restore_password_finish'})(RestorePasswordFinish))

@@ -140,6 +140,11 @@
     "filepath": "src/components/messages.js"
   },
   {
+    "id": "restore.finish.title",
+    "defaultMessage": "Restore-finish",
+    "filepath": "src/components/messages.js"
+  },
+  {
     "id": "change.password.title",
     "defaultMessage": "Enter a new password",
     "filepath": "src/components/messages.js"

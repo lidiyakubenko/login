@@ -13,13 +13,14 @@ class Registration extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        const {intl: {formatMessage}} = this.props
+        const {intl: {formatMessage}, match} = this.props
+        const lang = match.params.lang
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 axios({
                     method: 'post',
                     url: '/account/register',
-                    data: values,
+                    data: {...values, lang},
                     config: {headers: {'Content-Type': 'application/x-www-form-urlencoded',}}
                 })
                     .then(() => {
@@ -73,7 +74,7 @@ class Registration extends Component {
     }
 
     render() {
-        const {intl: {formatMessage}, history, match, redirectToUrl} = this.props
+        const {intl: {formatMessage}, redirectToUrl} = this.props
         const {getFieldDecorator} = this.props.form
         return (
             <div>

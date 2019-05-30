@@ -8,12 +8,17 @@ import RestorePasswordInit from './RestorePasswordInit'
 import {withRouter} from 'react-router-dom'
 import {injectIntl} from 'react-intl'
 import {messages} from './messages'
+import RestorePasswordFinish from './RestorePasswordFinish'
 
 
 class Main extends Component {
 
     state = {
         isRedirect: false
+    }
+
+    componentWillMount() {
+        console.log('mount main')
     }
 
     redirectToUrl = tab => {
@@ -31,6 +36,8 @@ class Main extends Component {
                 return formatMessage(messages.registration)
             case 'restore':
                 return formatMessage(messages.restore)
+            case 'restore-finish':
+                return formatMessage(messages.restoreFinish)
             default:
                 return match.params.tab.charAt(0).toUpperCase() + match.params.tab.slice(1)
         }
@@ -38,9 +45,11 @@ class Main extends Component {
 
     langMenu = () => {
         const {history, match} = this.props
+        const params = match.params
+        const url = params.tab === 'restore-finish' ? `/${match.params.key}` : ''
         return (
             <Menu selectable={true}
-                  onClick={e => history.push(`/${e.key}/${match.params.tab}`)}
+                  onClick={e => history.push(`/${e.key}/${params.tab}${url}`)}
                   selectedKeys={[match.params.lang]}>
                 <Menu.Item key="en">
                     <a>English</a>
@@ -71,10 +80,15 @@ class Main extends Component {
                 <div className={!isRedirect ? 'form flipInYMine' : 'form animated flipOutY faster'}>
                     <Card title={this.getTitle()} bordered={false} extra={this.langDropDown()}>
                         {match.params.tab === 'login' ?
-                            <Login redirectToUrl={this.redirectToUrl}/> : match.params.tab === 'registration' ?
-                                <Registration redirectToUrl={this.redirectToUrl}/>
+                            <Login redirectToUrl={this.redirectToUrl}/>
+                            :
+                            match.params.tab === 'restore-finish' ?
+                                <RestorePasswordFinish/>
                                 :
-                                <RestorePasswordInit redirectToUrl={this.redirectToUrl}/>
+                                match.params.tab === 'registration' ?
+                                    <Registration redirectToUrl={this.redirectToUrl}/>
+                                    :
+                                    <RestorePasswordInit redirectToUrl={this.redirectToUrl}/>
                         }
                     </Card>
                 </div>
