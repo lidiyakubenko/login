@@ -10,7 +10,7 @@ const lang = localStorage['lang'] ? JSON.parse(localStorage.getItem("lang")) : w
 const App = () =>
     <Switch>
         <Route exact path="/" render={() => (<Redirect to="/login"/>)}/>
-        <Route exact path='/activate/:key' component={Activate}/>
+        <Route exact path='/:lang(ru|en)/activate/:key' component={Activate}/>
         <Route exact path='/:lang(ru|en)/:tab(login|registration|restore)' component={Main}/>
         <Route exact path='/:lang(ru|en)/:tab(restore-finish)/:key' component={Main}/>
         <Route render={() => (<Redirect to={`${lang}/login`}/>)}/>
