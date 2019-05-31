@@ -5,6 +5,7 @@ import 'animate.css'
 import Main from './Main'
 import Activate from './Activate'
 
+const lang = localStorage['lang'] ? JSON.parse(localStorage.getItem("lang")) : window.navigator.language.split('-')[0]
 
 const App = () =>
     <Switch>
@@ -12,7 +13,7 @@ const App = () =>
         <Route exact path='/activate/:key' component={Activate}/>
         <Route exact path='/:lang(ru|en)/:tab(login|registration|restore)' component={Main}/>
         <Route exact path='/:lang(ru|en)/:tab(restore-finish)/:key' component={Main}/>
-        <Route render={() => (<Redirect to="en/login"/>)}/>
+        <Route render={() => (<Redirect to={`${lang}/login`}/>)}/>
     </Switch>
 
 export default App

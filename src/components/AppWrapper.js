@@ -14,6 +14,7 @@ class AppWrapper extends Component {
     render() {
         const {pathname} = this.props.location
         const locale = pathname.split('/')[1] || 'en'
+        localStorage['lang'] = JSON.stringify(locale)
         const messages = translations[locale]
         return (
             <LocaleProvider locale={locale === 'en' ? en : ru}>
