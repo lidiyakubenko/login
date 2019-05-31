@@ -80,15 +80,15 @@ class Main extends Component {
                 <div className={!isRedirect ? 'form flipInYMine' : 'form animated flipOutY faster'}>
                     <Card title={this.getTitle()} bordered={false} extra={this.langDropDown()}>
                         {match.params.tab === 'login' ?
-                            <Login redirectToUrl={this.redirectToUrl}/>
+                            <Login redirectToUrl={this.redirectToUrl} {...this.props}/>
                             :
                             match.params.tab === 'restore-finish' ?
-                                <RestorePasswordFinish/>
+                                <RestorePasswordFinish {...this.props}/>
                                 :
                                 match.params.tab === 'registration' ?
-                                    <Registration redirectToUrl={this.redirectToUrl}/>
+                                    <Registration redirectToUrl={this.redirectToUrl} {...this.props}/>
                                     :
-                                    <RestorePasswordInit redirectToUrl={this.redirectToUrl}/>
+                                    <RestorePasswordInit redirectToUrl={this.redirectToUrl} {...this.props}/>
                         }
                     </Card>
                 </div>
