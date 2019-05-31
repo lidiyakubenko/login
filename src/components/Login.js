@@ -29,6 +29,10 @@ class Login extends Component {
                     password: {
                         value: values.password,
                         errors: [new Error(formatMessage(messages.formErr))],
+                    },
+                    rememberMe: {
+                        value: values.rememberMe,
+                        errors: [new Error(formatMessage(messages.formErr))],
                     }
                 }) : console.log(error)
         }
@@ -40,6 +44,7 @@ class Login extends Component {
             if (!err) {
                 bodyFormData.set('username', values.username)
                 bodyFormData.set('password', values.password)
+                bodyFormData.set('rememberMe', values.rememberMe)
                 this.handleLogin(bodyFormData, values)
             }
         })
@@ -72,7 +77,7 @@ class Login extends Component {
                         )}
                     </Form.Item>
                     <Form.Item>
-                        {getFieldDecorator('remember', {
+                        {getFieldDecorator('rememberMe', {
                             valuePropName: 'checked',
                             initialValue: true,
                         })(<Checkbox>{formatMessage(messages.rememberMe)}</Checkbox>)}
