@@ -18,14 +18,27 @@ class Main extends Component {
     }
 
     componentWillMount() {
-        console.log('mount main')
+        this.changeScrollHidden()
+    }
+
+    changeScrollHidden = () => {
+        const notScroll = 'root_container_scroll_hidden'
+        const scroll = 'root_container'
+        const root = document.getElementById('root')
+        root.classList.remove(scroll)
+        root.classList.add(notScroll)
+        setTimeout(() => {
+            root.classList.remove(notScroll)
+            root.classList.add(scroll)
+        }, 1000)
     }
 
     redirectToUrl = tab => {
         const {match, history} = this.props
+        this.changeScrollHidden()
         this.setState({isRedirect: true})
-        setTimeout(() => history.replace(`/${match.params.lang}/${tab}`), 400)
-        setTimeout(() => this.setState({isRedirect: false}), 450)
+        setTimeout(() => history.replace(`/${match.params.lang}/${tab}`), 300)
+        setTimeout(() => this.setState({isRedirect: false}), 300)
     }
     getTitle = () => {
         const {intl: {formatMessage}, match} = this.props
@@ -76,7 +89,6 @@ class Main extends Component {
         const {isRedirect} = this.state
         const {match} = this.props
         return (
-            <div className='form_container'>
                 <div className={!isRedirect ? 'form flipInYMine' : 'form animated flipOutY faster'}>
                     <Card title={this.getTitle()} bordered={false} extra={this.langDropDown()}>
                         {match.params.tab === 'login' ?
@@ -92,7 +104,8 @@ class Main extends Component {
                         }
                     </Card>
                 </div>
-            </div>)
+
+        )
     }
 }
 

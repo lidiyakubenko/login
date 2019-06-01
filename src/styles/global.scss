@@ -1,51 +1,60 @@
 $width: 330px;
 $height: 100%;
 
+@mixin root {
+  height: $height;
+  display: flex;
+  align-items: center;
+}
+
 @mixin form {
   box-shadow: 0 0 4px 2px rgba(0, 0, 0, .1);
   background-color: whitesmoke;
-  //align-items: center;
-  max-width: 330px;
+  max-width: $width;
   min-width: $width;
+  margin: auto;
   border-radius: 5px;
   display: flex;
   flex-flow: column;
 }
 
+.root_container_scroll_hidden {
+  overflow: hidden;
+  @include root;
+}
+
 .root_container {
-  overflow:  hidden;
-  height: $height;
+  @include root;
+}
+
+.wrapper_background {
+  z-index: -10;
   background: url("./pictures/Subtle-Prism.svg");
   position: fixed;
-  top:0;
-  bottom:0;
+  top: 0;
+  bottom: 0;
   right: 0;
   left: 0;
 }
+
+
 
 .message_form {
   @include form;
   padding: 20px;
 }
 
-.form_container {
-  height: $height;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.form {
+  padding: 0;
+  @include form;
 
-  .form {
-    padding: 0;
-    @include form;
+  .login-form-forgot {
+    float: right;
+    cursor: pointer;
+  }
 
-    .login-form-forgot {
-      float: right;
-      cursor: pointer;
-    }
-
-    .form-button {
-      width: 100%;
-    }
+  .form-button {
+    width: 100%;
   }
 }
 
@@ -73,9 +82,15 @@ $height: 100%;
   backface-visibility: visible !important;
   -webkit-animation-name: turnOverInY;
   animation-name: turnOverInY;
-  -webkit-animation-duration: 500ms;
-  animation-duration: 500ms;
+  -webkit-animation-duration: 400ms;
+  animation-duration: 400ms;
 }
 
+@media (max-width: 330px) {
+  .form {
+    max-width: 310px;
+    min-width: 310px;
+  }
+}
 
 
