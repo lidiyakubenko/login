@@ -95,6 +95,7 @@ class Login extends Component {
                     <SocialIcon network="google" url="/oauth2/authorization/google"/>
                     <SocialIcon network="github" url="/oauth2/authorization/github"/>
                     <SocialIcon network="facebook" url="/oauth2/authorization/facebook"/>
+                    <SocialIcon network="vk" url="/oauth2/authorization/vk"/>
                 </div>
                 <div style={{display: 'flex', justifyContent: 'center', marginTop: 20}}>
                     <div>
