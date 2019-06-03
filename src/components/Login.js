@@ -90,7 +90,6 @@ class Login extends Component {
                             {formatMessage(messages.buttLogin)}
                         </Button>
                     </Form.Item>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </Form>
                 <div style={{display: 'flex', justifyContent: 'space-around'}}>
                     <SocialIcon network="google" url="/oauth2/authorization/google"/>
