@@ -7,7 +7,11 @@ import AppWrapper from './components/AppWrapper'
 
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
-
+let csrfHeader = document.getElementsByName('_csrf_header')[0].content;
+let csrfContent = document.getElementsByName('_csrf')[0].content;
+if (csrfHeader && csrfContent) {
+    axios.defaults.headers.common[csrfHeader] = csrfContent;
+}
 
 ReactDOM.render(
         <HashRouter>
