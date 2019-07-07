@@ -29,10 +29,6 @@ class Login extends Component {
                     password: {
                         value: values.password,
                         errors: [new Error(formatMessage(messages.formErr))],
-                    },
-                    rememberMe: {
-                        value: values.rememberMe,
-                        errors: [new Error(formatMessage(messages.formErr))],
                     }
                 }) : console.log(error)
         }
